@@ -5,17 +5,17 @@ metadata:
   name: sample
 spec:
   hosts:
-  # Assume that the default port for SSH is 22. Otherwise, add the port number after the IP address. 
+  # 假设SSH的默认端口是22，否则在IP地址后面加上端口号。 
   # If you install Kubernetes on ARM, add "arch: arm64". For example, {...user: ubuntu, password: Qcloud@123, arch: arm64}.
   - {name: node1, address: 172.16.0.2, internalAddress: 172.16.0.2, port: 8022, user: ubuntu, password: "Qcloud@123"}
   # For default root user.
-  # Kubekey will parse `labels` field and automatically label the node.
+  # Kubekey 将解析 labels 字段并自动标记节点。
   - {name: node2, address: 172.16.0.3, internalAddress: 172.16.0.3, password: "Qcloud@123", labels: {disk: SSD, role: backend}}
-  # For password-less login with SSH keys.
+  # 使用 SSH 密钥进行无密码登录。
   - {name: node3, address: 172.16.0.4, internalAddress: 172.16.0.4, privateKeyPath: "~/.ssh/id_rsa"}
   roleGroups:
     etcd:
-    - node1 # All the nodes in your cluster that serve as the etcd nodes.
+    - node1 # 集群中作为 etcd 节点的所有节点。
     master:
     - node1
     - node[2:10] # From node2 to node10. All the nodes in your cluster that serve as the master nodes.
