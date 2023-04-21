@@ -115,7 +115,9 @@ spec:
     autoCompactionRetention: "8"
     # 设置 etcd 导出指标的详细程度，指定 'extensive' 以包括直方图指标。
     metrics: basic
-    ## Etcd 的空间配额默认为 2G。如果您在 etcd_memory_limit 中放置一个小于 etcd_quota_backend_bytes 的值，您可能会遇到 etcd 集群的内存不足终止。请查看 etcd 文档以获取更多信息。
+    ## Etcd 的空间配额默认为 2G。
+    #  如果您在 etcd_memory_limit 中放置一个小于 etcd_quota_backend_bytes 的值，您可能会遇到 etcd 集群的内存不足终止。
+    # 请查看 etcd 文档以获取更多信息。
     # 8G 是正常环境的建议最大大小，如果配置值超过它，etcd 会在启动时发出警告。
     quotaBackendBytes: "2147483648" 
     # 服务器将接受的最大客户端请求大小（以字节为单位）。
@@ -138,19 +140,19 @@ spec:
     kubeServiceCIDR: 10.233.0.0/18
   storage:
     openebs:
-      basePath: /var/openebs/local # base path of the local PV provisioner
+      basePath: /var/openebs/local # local PV 本地路径
   registry:
     registryMirrors: []
     insecureRegistries: []
     privateRegistry: ""
     namespaceOverride: ""
-    auths: # if docker add by `docker login`, if containerd append to `/etc/containerd/config.toml`
+    auths: # 如果是docker，可以使用 `docker login`添加, 如果是 containerd 需要在 `/etc/containerd/config.toml`中添加
       "dockerhub.kubekey.local":
         username: "xxx"
         password: "***"
-        skipTLSVerify: false # Allow contacting registries over HTTPS with failed TLS verification.
-        plainHTTP: false # Allow contacting registries over HTTP.
+        skipTLSVerify: false # 允许在 TLS 验证失败的情况下通过 HTTPS 联系注册表。
+        plainHTTP: false # 允许通过 HTTP 联系注册表。
         certsPath: "/etc/docker/certs.d/dockerhub.kubekey.local" # Use certificates at path (*.crt, *.cert, *.key) to connect to the registry.
-  addons: [] # You can install cloud-native addons (Chart or YAML) by using this field.
+  addons: [] # 您可以使用此字段安装云原生插件（Chart 或 YAML）。
 
 ```
