@@ -91,12 +91,12 @@ spec:
       iso:
         localPath:
         url: https://github.com/kubesphere/kubekey/releases/download/v2.0.0/centos-7-amd64-rpms.iso
-  kubernetesDistributions: # Define the kubernetes distribution that will be included in the artifact.
+  kubernetesDistributions: # 定义将包含在artifact中的 kubernetes 发行版。
   - type: kubernetes
     version: v1.21.5
   - type: kubernetes
     version: v1.22.1
-  ## The following components' versions are automatically generated based on the default configuration of KubeKey.
+  ## 以下组件的版本是根据 KubeKey 的默认配置自动生成的。
   components: 
     helm:
       version: v3.6.3
@@ -104,23 +104,23 @@ spec:
       version: v0.9.1
     etcd:
       version: v3.4.13
-    ## For now, if your cluster container runtime is containerd, KubeKey will add a docker 20.10.8 container runtime in the below list.
-    ## The reason is KubeKey creates a cluster with containerd by installing a docker first and making kubelet connect the socket file of containerd which docker contained.
+    ## 如果您当前的集群容器运行时是 containerd，KubeKey 将在下面的列表中添加一个 docker 20.10.8 容器运行时。
+    ## 原因是 KubeKey 通过先安装一个 docker 并让 kubelet 连接 docker 包含的 containerd 的套接字文件来创建一个带有 containerd 的集群。
     containerRuntimes:
     - type: docker
       version: 20.10.8
     crictl:
       version: v1.22.0
-    ## The following components define the private registry files that will be included in the artifact.
+    ## 以下组件定义了将包含在artifact中的私有registry。
     docker-registry:
       version: "2"
     harbor:
       version: v2.4.1
     docker-compose:
       version: v2.2.2
-  ## Define the images that will be included in the artifact.
-  ## When you generate this file using KubeKey, all the images contained on the cluster hosts will be automatically added. 
-  ## Of course, you can also modify this list of images manually.
+  ## 定义将包含在artifact中的images。
+  ## 当您使用 KubeKey 生成此文件时，将自动添加集群主机上包含的所有images。
+  ## 当然，你也可以手动修改这个images列表。
   images:
   - docker.io/calico/cni:v3.20.0
   - docker.io/calico/kube-controllers:v3.20.0
@@ -138,13 +138,13 @@ spec:
   - dockerhub.kubekey.local/kubesphere/kube-proxy:v1.22.1
   - dockerhub.kubekey.local/kubesphere/kube-scheduler:v1.22.1
   - dockerhub.kubekey.local/kubesphere/pause:3.5
-  ## Define the authentication information if you need to pull images from a registry that requires authorization.
+  ## 如果您需要从需要授权的registry中拉取images，请定义身份验证信息。
   registry:
     auths:
       "dockerhub.kubekey.local":
         username: "xxx"
         password: "***"
-        skipTLSVerify: false # Allow contacting registries over HTTPS with failed TLS verification.
-        plainHTTP: false # Allow contacting registries over HTTP.
+        skipTLSVerify: false # 允许在 TLS 验证失败的情况下通过 HTTPS 连接registries。
+        plainHTTP: false # 允许通过 HTTP 连接 registries.
         certsPath: "/etc/docker/certs.d/dockerhub.kubekey.local" # Use certificates at path (*.crt, *.cert, *.key) to connect to the registry.
 ```
