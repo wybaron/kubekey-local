@@ -270,7 +270,7 @@ Getting cluster info and generating kubekey's configuration file (optional).
 
 * [Features List](docs/features.md)
 * [Commands](docs/commands/kk.md)
-* [Configuration example](docs/config-example.md)
+* [Configuration example](docs/config-example.md)  [Configuration example_zh](docs/config-example-zh.md)
 * [Air-Gapped Installation](docs/manifest_and_artifact.md)
 * [Highly Available clusters](docs/ha-mode.md)
 * [Addons](docs/addons.md)
